@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "PostgreSQL",
+            "database": "docker",
+            "username": "docker",
+            "password": "docker"
+        }
+    ],
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "mdb.sendTelemetry": false
+}
