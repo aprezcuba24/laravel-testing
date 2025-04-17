@@ -20,7 +20,7 @@ COPY library-scripts/*.sh /tmp/library-scripts/
 RUN apt-get update
 RUN export DEBIAN_FRONTEND=noninteractive \
     && bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" \
-    && apt-get -y install --no-install-recommends lynx
+    && apt-get -y install --no-install-recommends lynx curl
 
 # Use Docker script from script library to set things up
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -42,6 +42,9 @@ RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tm
 COPY config/aliases.sh /home/${USERNAME}/aliases.sh
 RUN chown ${USER_UID}:${USER_GID} /home/${USERNAME}/aliases.sh
 RUN sh /home/${USERNAME}/aliases.sh
+
+RUN curl -sL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y nodejs
 
 # RUN sed -i 's/\r//' /home/${USERNAME}/aliases.sh && \
 #     chown ${USER_UID}:${USER_GID} /home/${USERNAME}/aliases.sh && \
